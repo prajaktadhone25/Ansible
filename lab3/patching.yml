@@ -1,0 +1,15 @@
+---
+ 
+- name: Execute role patching
+
+  hosts: node
+
+  become: yes
+
+  gather_facts: false
+ 
+  roles:
+
+    - patching
+
+ 

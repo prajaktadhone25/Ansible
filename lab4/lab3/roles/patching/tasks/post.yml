@@ -1,0 +1,14 @@
+---
+# tasks file for patching
+- name: Collecting outputs
+  become: yes
+  shell: |
+    echo =========== Output of {{ item }} ============ >> "{{ inventory_hostname }}_redhatpostrecords"
+    {{ item }} >> "{{ inventory_hostname }}_redhatpostrecords"
+  with_items:
+    - uname -a
+    - uptime
+    - hostnamectl
+    - cat /etc/os-release
+    - df -h
+    - cat /etc/fstab

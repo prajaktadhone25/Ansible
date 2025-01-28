@@ -1,0 +1,17 @@
+---
+ 
+- name: Execute role patching
+
+  hosts: node
+
+  become: yes
+
+  gather_facts: true
+#  register: gather_factsss
+#- debug:
+#     msg: "{{gather_factss}}"
+  roles:
+
+    - patching
+
+ 

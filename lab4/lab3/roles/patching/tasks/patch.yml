@@ -1,0 +1,17 @@
+---
+# tasks file for patching
+- name: perform Patching
+  command: echo "PERFORMING PATCHING NOW"
+  register: patch
+ 
+- debug:
+    msg: "{{patch.stdout}}"
+- name: patching Amazon server
+  become: true
+  dnf:
+    name: '*'
+    state: latest
+  when: ansible_distribution == 'Amazon'
+  register: server_patch
+- debug:
+    msg: "{{ server_patch }}"

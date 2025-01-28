@@ -1,0 +1,10 @@
+---
+# tasks file for patching
+- name: include precheck tasks
+  include_tasks: precheck.yml
+ 
+- name: include patching tasks
+  include_tasks: patch.yml
+ 
+- name: include post tasks
+  include_tasks: post.yml

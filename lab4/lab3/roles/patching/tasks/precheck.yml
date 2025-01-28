@@ -1,0 +1,21 @@
+---
+# tasks file for patching
+ 
+- name: Create precheck report folder
+  stat:
+    path: ./precheck
+  register: folder_stat
+ 
+- name: Check precheckreport folder
+  file:
+    path: ./precheck
+    state: directory
+  when: not folder_stat.stat.exists
+ 
+- name: Check available space on /var
+  shell: |
+    df /var --output\=avail | tail -1
+  register: var_freespace
+ 
+- debug:
+    msg: "{{var_freespace.stdout}}"

@@ -1,0 +1,50 @@
+---
+- name: Example Simple Variable
+  hosts: node
+  become: yes
+ 
+  tasks:
+  - name: Add the user {{ username }}
+    ansible.builtin.user:
+      name: "{{ username }}"
+      state: present
+    #become: yes
+ 
+  - name: create a file
+    ansible.builtin.file:
+      path: sample12
+      mode: '1777'
+      state: touch
+    delegate_to: localhost
+ 
+  - name: create a folder
+    ansible.builtin.file:
+      path: /tmp/{{ filename }}
+      mode: '1777'
+      state: directory
+ 
+  - name: execute shell command
+    shell: |
+      echo "This is test page" >> /tmp/page.txt
+      conn=`cat /tmp/page.txt`
+      echo $conn
+    register: regconn
+ 
+  - debug:
+      msg: "{{ regconn.stdout_lines }}"
+ 
+  - debug:
+      var: regconn.stdout_lines
+ 
+  - name: print single command
+    shell: df -h
+    register: df
+ 
+  - debug:
+      msg: "{{ df.stdout_lines }}"
+ 
+  - debug:
+      msg: "{{ df.stdout }}"
+ 
+  - debug:
+      var: df.stdout_lines

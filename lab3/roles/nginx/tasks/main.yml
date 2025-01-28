@@ -1,0 +1,26 @@
+---
+# tasks file for nginx
+ 
+- name: Install nginx
+  dnf: name=nginx state=present
+ 
+- name: Copy nginx configuration for wordpress
+  template: src=default.conf dest=/etc/nginx/conf.d/default.conf
+  notify: restart nginx
+ 
+- name: Install tools
+  dnf:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - htop
+    - wget
+    - tree
+    - git
+    - nodejs
+ 
+- name: fetch response file from managed node to ansible node
+  fetch:
+    src: "{{ srcfilename }}"
+    dest: "{{ destfilename }}"
+    flat: yes

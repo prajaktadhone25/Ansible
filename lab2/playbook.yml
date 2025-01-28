@@ -1,0 +1,17 @@
+---
+- name: Intro to Ansible Playbooks
+  hosts: node
+  gather_facts: false
+ 
+  tasks:
+  - name: Copy file hosts with permissions
+    ansible.builtin.copy:
+      src: /home/ansible/lab2/
+      dest: /tmp/test_backup
+      mode: '0644'
+    ignore_errors: true
+ 
+  - name: Add the user 'gauri'
+    ansible.builtin.user:
+      name: gauri
+    become: yes

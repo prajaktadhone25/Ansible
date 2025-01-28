@@ -1,0 +1,19 @@
+#[node]
+#172.31.85.131 ansible_ssh_user=ansible ansible_ssh_pass=Admin@123
+
+#[node]
+#172.31.85.131 ansible_ssh_user=ansible ansible_ssh_pass=ansible
+ 
+#[app]
+#172.31.23.16 ansible_ssh_user=ansible ansible_ssh_pass=ansible
+
+#[nodegroup:children]
+#node
+#app
+
+[node]
+172.31.85.131
+ 
+#[node:vars]
+#ansible_ssh_user=ansible
+#ansible_ssh_pass=Admin@123 

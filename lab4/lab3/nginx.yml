@@ -1,0 +1,15 @@
+---
+ 
+- name: Execute role nginx
+
+  hosts: node
+
+  become: yes
+
+  gather_facts: false
+ 
+  roles:
+
+    - nginx
+
+ 

@@ -1,0 +1,5 @@
+---
+# vars file for nginx
+srcfilename: /home/ansbile/response.log
+destfilename: /tmp/
+server_hostname: 172.31.85.131

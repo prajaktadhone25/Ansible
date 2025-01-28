@@ -1,0 +1,5 @@
+---
+ 
+username: gauri1
+ansible_ssh_user: ansible
+ansible_ssh_pass: Admin@123
